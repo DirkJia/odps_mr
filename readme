@@ -1,0 +1,7 @@
+工具功能:测试odps设置相同table输入，不同label，是否可行
+
+操作步骤：
+    1、找到当前目录下conf目录，打开odps-core.properties，根据注释合理配置odps相关配置项
+    2、回到bin目录，执行sh run-demo.sh
+    3、去平台界面查看表hsj_test_in的数据量n1，查看hsj_test_out表的数据量n2，确认是否n2=2*n1
+    4、通过日志打印的连接，去界面打开查看当前任务map的日志，复制界面日志以及当前工具的log目录下的日志，回传给数据服务部 @x4973 何世甲

@@ -1,0 +1,61 @@
+<assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd
+http://maven.apache.org/ASSEMBLY/2.0.0 ">
+    <!--参考：https://maven.apache.org/plugins/maven-assembly-plugin/assembly.html-->
+    <!--这个id会跟在打包文件后面，现还不清楚怎么取消-->
+    <id>full</id>
+    <formats>
+        <!--打成tar.gz-->
+        <format>tar.gz</format>
+    </formats>
+    <!--tar.gz压缩包下是否生成和项目名相同的根目录-->
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <baseDirectory>odpsdemo-install-${project.version}</baseDirectory>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <!--bin，shell脚本目录-->
+        <fileSet>
+            <directory>data</directory>
+            <includes>
+                <include>*</include>
+            </includes>
+            <outputDirectory>data</outputDirectory>
+            <!--默认权限是0644-->
+            <fileMode>0755</fileMode>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        <fileSet>
+            <directory>bin</directory>
+            <includes>
+                <include>run-demo.sh</include>
+            </includes>
+            <outputDirectory>bin</outputDirectory>
+            <!--默认权限是0644-->
+            <fileMode>0755</fileMode>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <outputDirectory>conf</outputDirectory>
+            <fileMode>0755</fileMode>
+            <lineEnding>unix</lineEnding>
+        </fileSet>
+        <!--end-->
+    </fileSets>
+
+    <files>
+        <file>
+            <source>readme</source>
+            <filtered>true</filtered>
+            <outputDirectory/>
+            <lineEnding>unix</lineEnding>
+        </file>
+    </files>
+</assembly>
